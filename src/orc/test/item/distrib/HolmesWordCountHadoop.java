@@ -189,7 +189,11 @@ public class HolmesWordCountHadoop {
 
         setupOutput();
 
-        final Object[][] factorValues = { { "Program", "HolmesWordCountHadoop.java", "", "" }, { "Number of files", Integer.valueOf(numInputFiles), "", "Number of files read" }, { "Cluster size", Integer.valueOf(clusterSize), "", "Number of replicas" } };
+        final Object[][] factorValues = {
+                { "Program", "HolmesWordCountHadoop.java", "", "", "" },
+                { "Number of files read", Integer.valueOf(numInputFiles), "", "numInputFiles", "Words counted in this number of input text files" },
+                { "Cluster size", Integer.valueOf(clusterSize), "", "dOrcNumRuntimes", "Number of replicas" }
+        };
         FactorValue.writeFactorValuesTable(factorValues);
 
         final Long[][] repetitionTimes = timeRepetitions(conf, otherArgs, numRepetitions);
