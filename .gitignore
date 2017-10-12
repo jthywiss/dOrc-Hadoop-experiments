@@ -1,22 +1,15 @@
-# Compiled class file
-*.class
+# .gitignore -- Lists files for git to ignore (not track)
+#
 
-# Log file
-*.log
+## Various OS desktop UI junk files
+.DS_Store
+Desktop.ini
+Thumbs.db
 
-# BlueJ files
-*.ctxt
-
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
-
-# Package Files #
-*.jar
-*.war
-*.ear
-*.zip
-*.tar.gz
-*.rar
+# Eclipse and Scala build products/byproducts
+/.cache
+/.cache-main
+/build/
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
