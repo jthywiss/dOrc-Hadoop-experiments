@@ -110,6 +110,10 @@ public class HolmesWordCountHadoop {
         return job.waitForCompletion(false);
     }
 
+    ////////
+    // Test Driver
+    ////////
+
     public static Long[][] timeRepetitions(final Configuration conf, final String[] args, final int numRepetitions) throws IOException, IllegalStateException, IllegalArgumentException, ClassNotFoundException, InterruptedException {
         final Long[][] testElapsedTimes = new Long[numRepetitions][2];
         for (int thisRepetitionNum = 1; thisRepetitionNum <= numRepetitions; thisRepetitionNum++) {
