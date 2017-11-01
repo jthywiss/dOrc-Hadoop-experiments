@@ -15,10 +15,12 @@ library(ggplot2)
 
 source("analysis.R")
 
+runNumber <- commandArgs(trailingOnly = TRUE)[1]
+
 allRepetitionTimes <- read.csv("repetition-times.csv")
 names(allRepetitionTimes) <- c("program", "numInputFiles", "dOrcNumRuntimes", "repetitionNumber", "elapsedTime")
 
-warmRepetitionTimes <- allRepetitionTimes[allRepetitionTimes$repetitionNumber >= 3,]
+warmRepetitionTimes <- allRepetitionTimes[allRepetitionTimes$repetitionNumber >= 10,]
 
 elapsedTimeSummary <- warmRepetitionTimes[!is.na(warmRepetitionTimes$dOrcNumRuntimes),] %>%
   group_by(program, numInputFiles, dOrcNumRuntimes) %>%
@@ -28,14 +30,14 @@ elapsedTimeSummary <- warmRepetitionTimes[!is.na(warmRepetitionTimes$dOrcNumRunt
 # Plot elapsed times
 
 for (currProgram in unique(elapsedTimeSummary$program)) {
-  ggplot(elapsedTimeSummary[elapsedTimeSummary$program == currProgram,], aes(x = factor(numInputFiles), y = meanElapsedTime, group = 1)) +
-  geom_point() +
+  ggplot(elapsedTimeSummary[elapsedTimeSummary$program == currProgram,], aes(x = factor(numInputFiles), y = meanElapsedTime, group = factor(dOrcNumRuntimes), colour = factor(dOrcNumRuntimes), shape = factor(dOrcNumRuntimes))) +
+  geom_point(size = 3) +
   stat_summary(fun.y = mean, geom = "line") +
-  ggtitle(currProgram) +
+  ggtitle(paste(currProgram, "Run", runNumber)) +
   xlab("Number of files read") +
-  labs(fill = "Cluster size [Number of HDFS replicas]") +
+  labs(colour = "Cluster size [Number of HDFS replicas]", shape = "Cluster size [Number of HDFS replicas]") +
   scale_y_continuous(name = "Elapsed time (s)", labels = function(n){format(n / 1000000, scientific = FALSE)}) +
-  expand_limits(y = 0) +
+  expand_limits(y = 0.0) +
   geom_errorbar(aes(ymax = meanElapsedTime + seElapsedTime, ymin = meanElapsedTime - seElapsedTime), width = 0.2, alpha = 0.35, position = "dodge") +
   theme_minimal() +
   theme(legend.justification = c(0, 1), legend.position = c(0, 1))
