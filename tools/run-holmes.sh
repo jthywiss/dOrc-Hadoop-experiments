@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -o nounset
+
 run_one () {
   echo 'hdfs dfs -rm -r output\*'
   hdfs dfs -rm -r output\*
@@ -21,8 +23,13 @@ run_one () {
   echo
 }
 
-export ORC_TEST_ROOT=/u/${LOGNAME}/orc-test-root
-export HADOOP_CLASSPATH=${ORC_TEST_ROOT}/OrcScala/build/orc-2.1.1.jar:${ORC_TEST_ROOT}/OrcScala/lib/scala-library.jar:${ORC_TEST_ROOT}/OrcScala/lib/scala-parser-combinators_2.12-1.0.6.jar:${ORC_TEST_ROOT}/OrcScala/lib/scala-reflect.jar:${ORC_TEST_ROOT}/OrcScala/lib/scala-xml_2.12-1.0.6.jar:${ORC_TEST_ROOT}/PorcE/build/classes/:${ORC_TEST_ROOT}/OrcTests/build/
+if [ $# -ne 0 ] ; then
+    echo "usage: $0" 1>&2
+    exit 64 # usage
+fi
+
+export ORC_TEST_ROOT="${HOME}/orc-test-root"
+export HADOOP_CLASSPATH="${ORC_TEST_ROOT}/OrcScala/build/orc-2.1.1.jar:${ORC_TEST_ROOT}/OrcScala/lib/scala-library.jar:${ORC_TEST_ROOT}/OrcScala/lib/scala-parser-combinators_2.12-1.0.6.jar:${ORC_TEST_ROOT}/OrcScala/lib/scala-reflect.jar:${ORC_TEST_ROOT}/OrcScala/lib/scala-xml_2.12-1.0.6.jar:${ORC_TEST_ROOT}/PorcE/build/classes/:${ORC_TEST_ROOT}/OrcTests/build/"
 
 # Hadoop requires that the class path entries are world readable
 echo 'Making class path entries world readable'

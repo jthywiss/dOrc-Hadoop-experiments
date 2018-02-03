@@ -1,5 +1,12 @@
 #!/bin/sh
 
+set -u
+
+if [ $# -ne 0 ] ; then
+    echo "usage: $0" 1>&2
+    exit 64 # usage
+fi
+
 printf 'Clobber DFS? '
 read response
 if ! printf "%s\n" "$response" | grep -Eq -- "$(locale yesexpr)"
@@ -13,9 +20,9 @@ echo 'stop-dfs.sh'
 stop-dfs.sh
 echo
 echo
-echo "rm -fr /tmp/hadoop /tmp/*${LOGNAME}* /tmp/Jetty_*"
-rm -fr /tmp/hadoop /tmp/*${LOGNAME}* /tmp/Jetty_*
+echo "rm -fr /tmp/hadoop /tmp/*${LOGNAME}* /tmp/Jetty_* /var/local/hadoop-${LOGNAME}"
+rm -fr /tmp/hadoop /tmp/*${LOGNAME}* /tmp/Jetty_* /var/local/hadoop-${LOGNAME}
 echo
-echo "slaves.sh rm -fr /tmp/hadoop /tmp/\*${LOGNAME}\* /tmp/Jetty_\*"
-slaves.sh rm -fr /tmp/hadoop /tmp/\*${LOGNAME}\* /tmp/Jetty_\*
+echo "slaves.sh rm -fr /tmp/hadoop /tmp/\*${LOGNAME}\* /tmp/Jetty_\*  /var/local/hadoop-${LOGNAME}"
+slaves.sh rm -fr /tmp/hadoop /tmp/\*${LOGNAME}\* /tmp/Jetty_\* /var/local/hadoop-${LOGNAME}
 echo
