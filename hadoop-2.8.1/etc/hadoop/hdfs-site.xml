@@ -18,6 +18,10 @@
 
 <configuration>
   <property>
+    <name>dfs.datanode.data.dir</name>
+    <value>file:///var/local/hadoop-${user.name}/dfs/data</value>
+  </property>
+  <property>
     <name>dfs.namenode.secondary.http-address</name>
     <value>the-professor.cs.utexas.edu:50090</value>
   </property>
