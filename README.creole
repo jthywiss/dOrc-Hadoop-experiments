@@ -1,3 +1,32 @@
 = dOrc-Hadoop-experiments =
 
 Experiments on Hadoop/HDFS for comparison with d-Orc
+
+== Overview ==
+
+This directory tree contains a Hadoop application that counts words in files, written in standard Java.
+This application is for comparison with the d-Orc {{{wordcount}}} performance test item.
+
+
+== What's in This Directory Tree ==
+
+* An Eclipse project with Java source and build scripts.
+* The Hadoop 2.8.1 distribution for Linux, without the documentation.
+* Utilities to load data into HDFS and run the tests.
+
+
+== To Install and Run ==
+
+# Configure any settings in the {{{hadoop-2.8.1/etc/hadoop}}} directory.  Notably, set the list of {{{slaves}}} and {{{slaves.all}}}, and the settings in {{{core-site.xml}}} and {{{hdfs-site.xml}}}.
+# Copy the Hadoop distribution in {{{hadoop-2.8.1}}} to all of your target machines.
+# Set the {{{HADOOP_PREFIX}}} environment variable on all of your target machines to the location of the Hadoop distribution.
+# Add {{{$HADOOP_PREFIX/sbin:$HADOOP_PREFIX/bin}}} to your PATH on all of your target machines.
+# Run the Eclipse build.  This will:
+## Build the Java files, and
+## Bundle them into the {{{dOrc-Hadoop-experiments.jar}}} JAR in the build directory.
+# Copy the {{{dOrc-Hadoop-experiments.jar}}} JAR to the machine you will start tests from.
+# Place the input test data file ########TODO########
+# Run the {{{tools/format-load-dfs.sh}}} shell script to replicate the input test data file to HDFS.
+# Run the {{{tools/run-holmes.sh}}} shell script to actually run the app.
+# Output and logs will be in {{{raw-output}}}.
+# Run the {{{tools/clobber-dfs.sh}}} shell script to clean up the HDFS processes and files.
