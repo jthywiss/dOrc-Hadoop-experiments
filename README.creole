@@ -13,6 +13,7 @@ This application is for comparison with the d-Orc {{{wordcount}}} performance te
 * An Eclipse project with Java source and build scripts.
 * The Hadoop 2.8.1 distribution for Linux, without the documentation.
 * Utilities to load data into HDFS and run the tests.
+* An R script to plot the elapsed times of the experimental trials.
 
 
 == To Install and Run ==
@@ -22,12 +23,20 @@ This application is for comparison with the d-Orc {{{wordcount}}} performance te
 # Copy the Hadoop distribution in {{{hadoop-2.8.1}}} to all of your target machines.
 # Set the {{{HADOOP_PREFIX}}} environment variable on all of your target machines to the location of the Hadoop distribution.
 # Add {{{$HADOOP_PREFIX/sbin:$HADOOP_PREFIX/bin}}} to your PATH on all of your target machines.
-# Run the Eclipse build.  This will:
-## Build the Java files, and
-## Bundle them into the {{{dOrc-Hadoop-experiments.jar}}} JAR in the {{{build}}} directory.
+# Run the Eclipse build.  (The Eclipse projects {{{OrcScala}}}, {{{OrcSites}}}, {{{OrcTests}}}, and {{{PorcE}}} are needed to build {{{dOrc-Hadoop-experiments}}}.)  The Eclipse build:
+## Builds the Java files, and
+## Bundles them into the {{{dOrc-Hadoop-experiments.jar}}} JAR in the {{{build}}} directory.
 # Copy the {{{dOrc-Hadoop-experiments.jar}}} JAR to the leader host.
 # Place a single copy of the input test data file somewhere on the leader host.
 # Run the {{{tools/format-load-dfs.sh}}} shell script on the leader host, to replicate the input test data file to HDFS.
 # Run the {{{tools/run-holmes.sh}}} shell script on the leader host, to actually run the app.
 # Output and logs will be in {{{raw-output}}}.
 # Run the {{{tools/clobber-dfs.sh}}} shell script on the leader host, to clean up the HDFS processes and files.
+# Run the R script:
+## TODO: Take my scratch script that does these steps and generalize so that others can run it.
+## Create {{{experimental-conditions.csv}} 
+## Run {{{java -cp "${ORC_HOME}"OrcScala/lib/scala-library.jar:"${ORC_HOME}"OrcTests/build/ orc.test.util.RunResultsTableMerge . repetition-times >"${ANALYSIS_DIR}"repetition-times.csv}}}
+## Copy {{{analysis.R}}}, {{{plotElapsedTimeHadoop.R}}}, {{{repetition-times.csv}}} to a scratch directory.
+## In the scratch directory, run {{{Rscript plotElapsedTimeHadoop.R }}}//{{{run_number}}}//, where //{{{run_number}}}// is used in the graph's title.
+## Copy {{{*.pdf}}} from the scratch directory to {{{analysis_elapsedTime}}}.
+## Remove the scratch directory.
