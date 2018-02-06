@@ -34,7 +34,7 @@ This application is for comparison with the d-Orc {{{wordcount}}} performance te
 # Run the {{{tools/clobber-dfs.sh}}} shell script on the leader host, to clean up the HDFS processes and files.
 # Run the R script:
 ## TODO: Take my scratch script that does these steps and generalize so that others can run it.
-## Create {{{experimental-conditions.csv}} 
+## Create {{{experimental-conditions.csv}}}
 ## Run {{{java -cp "${ORC_HOME}"OrcScala/lib/scala-library.jar:"${ORC_HOME}"OrcTests/build/ orc.test.util.RunResultsTableMerge . repetition-times >"${ANALYSIS_DIR}"repetition-times.csv}}}
 ## Copy {{{analysis.R}}}, {{{plotElapsedTimeHadoop.R}}}, {{{repetition-times.csv}}} to a scratch directory.
 ## In the scratch directory, run {{{Rscript plotElapsedTimeHadoop.R }}}//{{{run_number}}}//, where //{{{run_number}}}// is used in the graph's title.
