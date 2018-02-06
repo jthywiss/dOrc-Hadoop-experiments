@@ -2,6 +2,8 @@
 
 set -o nounset
 
+progname=$(basename "$0")
+
 run_one () {
   echo 'hdfs dfs -rm -r output\*'
   hdfs dfs -rm -r output\*
@@ -24,7 +26,7 @@ run_one () {
 }
 
 if [ $# -ne 0 ] ; then
-    echo "usage: $0" 1>&2
+    echo "usage: ${progname}" 1>&2
     exit 64 # usage
 fi
 

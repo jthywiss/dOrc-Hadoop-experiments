@@ -2,8 +2,10 @@
 
 set -u
 
+progname=$(basename "$0")
+
 if [ $# -ne 0 ] ; then
-    echo "usage: $0" 1>&2
+    echo "usage: ${progname}" 1>&2
     exit 64 # usage
 fi
 
