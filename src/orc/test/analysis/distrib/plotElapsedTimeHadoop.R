@@ -10,12 +10,14 @@
 # URL: http://orc.csres.utexas.edu/license.shtml .
 #
 
-library(dplyr)
+library(dplyr, warn.conflicts = FALSE)
 library(ggplot2)
 
 source("analysis.R")
 
 runNumber <- commandArgs(trailingOnly = TRUE)[1]
+warmupReps <- 9
+fileSize <- 1.302393420 # GB
 
 allRepetitionTimes <- read.csv("repetition-times.csv")
 names(allRepetitionTimes) <- c("program", "numInputFiles", "dOrcNumRuntimes", "repetitionNumber", "elapsedTime")
@@ -24,17 +26,18 @@ warmRepetitionTimes <- allRepetitionTimes[allRepetitionTimes$repetitionNumber >=
 
 elapsedTimeSummary <- warmRepetitionTimes[!is.na(warmRepetitionTimes$dOrcNumRuntimes),] %>%
   group_by(program, numInputFiles, dOrcNumRuntimes) %>%
-  summarise(nElapsedTime = length(elapsedTime), meanElapsedTime = mean(elapsedTime), sdElapsedTime = sd(elapsedTime), seElapsedTime = sdElapsedTime / sqrt(nElapsedTime))
+  summarise(nElapsedTime = length(elapsedTime), meanElapsedTime = mean(elapsedTime), sdElapsedTime = sd(elapsedTime), seElapsedTime = sdElapsedTime / sqrt(nElapsedTime)) %>%
+  rowwise() %>% mutate(sizeInput = numInputFiles * fileSize)
 
 
 # Plot elapsed times
 
 for (currProgram in unique(elapsedTimeSummary$program)) {
-  ggplot(elapsedTimeSummary[elapsedTimeSummary$program == currProgram,], aes(x = factor(numInputFiles), y = meanElapsedTime, group = factor(dOrcNumRuntimes), colour = factor(dOrcNumRuntimes), shape = factor(dOrcNumRuntimes))) +
+  ggplot(elapsedTimeSummary[elapsedTimeSummary$program == currProgram,], aes(x = sizeInput, y = meanElapsedTime, group = factor(dOrcNumRuntimes), colour = factor(dOrcNumRuntimes), shape = factor(dOrcNumRuntimes))) +
   geom_point(size = 3) +
   stat_summary(fun.y = mean, geom = "line") +
   ggtitle(paste(currProgram, "Run", runNumber)) +
-  xlab("Number of files read") +
+  xlab("Input size (GB)") +
   labs(colour = "Cluster size [Number of HDFS replicas]", shape = "Cluster size [Number of HDFS replicas]") +
   scale_y_continuous(name = "Elapsed time (s)", labels = function(n){format(n / 1000000, scientific = FALSE)}) +
   expand_limits(y = 0.0) +
