@@ -17,12 +17,12 @@ source("analysis.R")
 
 runNumber <- commandArgs(trailingOnly = TRUE)[1]
 warmupReps <- 9
-fileSize <- 1.302393420 # GB
+fileSize <- 0.151945899 # GB
 
 allRepetitionTimes <- read.csv("repetition-times.csv")
 names(allRepetitionTimes) <- c("program", "numInputFiles", "dOrcNumRuntimes", "repetitionNumber", "elapsedTime")
 
-warmRepetitionTimes <- allRepetitionTimes[allRepetitionTimes$repetitionNumber >= 10,]
+warmRepetitionTimes <- allRepetitionTimes[allRepetitionTimes$repetitionNumber >= (warmupReps + 1),]
 
 elapsedTimeSummary <- warmRepetitionTimes[!is.na(warmRepetitionTimes$dOrcNumRuntimes),] %>%
   group_by(program, numInputFiles, dOrcNumRuntimes) %>%
