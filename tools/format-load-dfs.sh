@@ -29,7 +29,7 @@ echo
 # echo 'hdfs dfs -put '${ORC_TEST_ROOT}'/OrcTests/test_data/performance/distrib/holmes_test_data input'
 # hdfs dfs -put ${ORC_TEST_ROOT}/OrcTests/test_data/performance/distrib/holmes_test_data input
 
-src="${HOME}/big_log_test_data-208M.txt"
+src="$1"
 i=1
 end=120
 while [ $i -le $end ]; do
