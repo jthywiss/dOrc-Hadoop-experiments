@@ -19,6 +19,6 @@
 <configuration>
   <property>
     <name>fs.default.name</name>
-    <value>hdfs://the-professor.cs.utexas.edu</value>
+    <value>hdfs://zwerdling.cs.utexas.edu</value>
   </property>
 </configuration>

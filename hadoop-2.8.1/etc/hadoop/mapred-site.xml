@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
 <!--
   Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,6 +17,14 @@
 <!-- Put site-specific property overrides in this file. -->
 
 <configuration>
+  <property>
+    <name>mapreduce.job.maps</name>
+    <value>6</value>
+  </property>
+  <property>
+    <name>mapreduce.framework.name</name>
+    <value>yarn</value>
+  </property>
   <property>
     <name>mapreduce.job.max.split.locations</name>
     <value>12</value>

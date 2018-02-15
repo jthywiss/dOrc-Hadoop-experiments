@@ -23,7 +23,7 @@
   </property>
   <property>
     <name>dfs.namenode.secondary.http-address</name>
-    <value>the-professor.cs.utexas.edu:50090</value>
+    <value>zwerdling.cs.utexas.edu:50090</value>
   </property>
   <property>
     <name>dfs.replication</name>
