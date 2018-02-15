@@ -47,3 +47,23 @@ for (currProgram in unique(elapsedTimeSummary$program)) {
 
   ggsave(paste0("elapsedTime_", currProgram, ".pdf"), width = 7, height = 7)
 }
+
+
+# # Plot elapsed times: Hadoop vs. Mixed Orc-Java at 6 nodes
+#
+# program <- c("Java+dOrc", "Hadoop")
+# meanElapsedTime <- c(15352089,130345826.3-44750000)
+# seElapsedTime <- c(38011,496857)
+# hadoopVsMixed <- data.frame(program,meanElapsedTime,seElapsedTime)
+#
+# {
+#   ggplot(hadoopVsMixed, aes(x = program, y = meanElapsedTime, group = 1, colour = program, fill = program)) +
+#   geom_col() +
+#   xlab("Program variant") +
+#   scale_y_continuous(name = "Elapsed time (s)", labels = function(n){format(n / 1000000, scientific = FALSE)}) +
+#   expand_limits(y = 0.0) +
+#   geom_errorbar(aes(ymax = meanElapsedTime + seElapsedTime, ymin = meanElapsedTime - seElapsedTime), colour = "black", width = 0.2, alpha = 0.35, position = "dodge") +
+#   theme_minimal() +
+#   theme(legend.position = "none", axis.text=element_text(size=24), axis.title=element_text(size=28))
+#   ggsave("wordcount-elapsedTime-hadoop-mixed-6.pdf", width = 7, height = 7)
+# }
