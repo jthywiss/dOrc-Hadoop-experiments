@@ -37,3 +37,5 @@ while [ $i -le $end ]; do
   hdfs dfs -put "${src}" input/input-copy-${i}.txt
   i=$(($i+1))
 done
+
+echo

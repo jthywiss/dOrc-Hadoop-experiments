@@ -9,7 +9,7 @@ if [ $# -ne 0 ] ; then
     exit 64 # usage
 fi
 
-printf 'Clobber DFS? '
+printf 'Stop daemons and clobber DFS? '
 read response
 if ! printf "%s\n" "$response" | grep -Eq -- "$(locale yesexpr)"
 then
@@ -22,9 +22,17 @@ echo 'stop-dfs.sh'
 stop-dfs.sh
 echo
 echo
-echo "rm -fr /tmp/hadoop /tmp/*${LOGNAME}* /tmp/Jetty_* /var/local/hadoop-${LOGNAME}"
-rm -fr /tmp/hadoop /tmp/*${LOGNAME}* /tmp/Jetty_* /var/local/hadoop-${LOGNAME}
+echo 'stop-yarn.sh'
+stop-yarn.sh
 echo
-echo "slaves.sh rm -fr /tmp/hadoop /tmp/\*${LOGNAME}\* /tmp/Jetty_\*  /var/local/hadoop-${LOGNAME}"
-slaves.sh rm -fr /tmp/hadoop /tmp/\*${LOGNAME}\* /tmp/Jetty_\* /var/local/hadoop-${LOGNAME}
+echo
+echo 'mr-jobhistory-daemon.sh stop historyserver'
+mr-jobhistory-daemon.sh stop historyserver
+echo
+echo
+echo "rm -fr /tmp/hadoop /tmp/*${LOGNAME}* /tmp/Jetty_* /var/local/hadoop-${LOGNAME} /tmp/hadoop-yarn"
+rm -fr /tmp/hadoop /tmp/*${LOGNAME}* /tmp/Jetty_* /var/local/hadoop-${LOGNAME} /tmp/hadoop-yarn
+echo
+echo "slaves.sh rm -fr /tmp/hadoop /tmp/\*${LOGNAME}\* /tmp/Jetty_\*  /var/local/hadoop-${LOGNAME} /tmp/hadoop-yarn"
+slaves.sh rm -fr /tmp/hadoop /tmp/\*${LOGNAME}\* /tmp/Jetty_\* /var/local/hadoop-${LOGNAME} /tmp/hadoop-yarn
 echo

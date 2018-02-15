@@ -14,9 +14,9 @@ run_one () {
   echo ${orc_executionlog_fileprefix}
   echo
   echo
-  echo "hadoop jar dOrc-Hadoop-experiments.jar orc.test.item.distrib.HolmesWordCountHadoop -libjars ..." "$@" "output"
-  # { { eval hadoop jar dOrc-Hadoop-experiments.jar orc.test.item.distrib.HolmesWordCountHadoop -libjars ${HADOOP_CLASSPATH//:/,} "$@" output | tee raw-output/${orc_executionlog_fileprefix}.out; exit ${PIPESTATUS[0]}; } 2>&1 1>&3 | tee raw-output/${orc_executionlog_fileprefix}.err; exit ${PIPESTATUS[0]}; } 3>&1 1>&2
-  { { eval hadoop jar dOrc-Hadoop-experiments.jar orc.test.item.distrib.HolmesWordCountHadoop -libjars ${HADOOP_CLASSPATH//:/,} "$@" output | tee raw-output/${orc_executionlog_fileprefix}.out; } 2>&1 1>&3 | tee raw-output/${orc_executionlog_fileprefix}.err; } 3>&1 1>&2
+  echo "yarn jar dOrc-Hadoop-experiments.jar orc.test.item.distrib.HolmesWordCountHadoop -libjars ..." "$@" "output"
+  # { { eval yarn jar dOrc-Hadoop-experiments.jar orc.test.item.distrib.HolmesWordCountHadoop -libjars ${HADOOP_CLASSPATH//:/,} "$@" output | tee raw-output/${orc_executionlog_fileprefix}.out; exit ${PIPESTATUS[0]}; } 2>&1 1>&3 | tee raw-output/${orc_executionlog_fileprefix}.err; exit ${PIPESTATUS[0]}; } 3>&1 1>&2
+  { { eval yarn jar dOrc-Hadoop-experiments.jar orc.test.item.distrib.HolmesWordCountHadoop -libjars ${HADOOP_CLASSPATH//:/,} "$@" output | tee raw-output/${orc_executionlog_fileprefix}.out; } 2>&1 1>&3 | tee raw-output/${orc_executionlog_fileprefix}.err; } 3>&1 1>&2
   echo
   echo
   echo 'hdfs dfs -cat output\*/\*'
@@ -63,7 +63,7 @@ echo 'slaves.sh uptime'
 slaves.sh uptime
 echo
 echo
-for input_files in "input/input-copy-{1..24}.txt" "input/input-copy-{1..48}.txt" "input/input-copy-{1..72}.txt" "input/input-copy-{1..96}.txt" "input/input-copy-{1..120}.txt"
+for input_files in "input/input-copy-{1..30}.txt" "input/input-copy-{1..60}.txt" "input/input-copy-{1..90}.txt" "input/input-copy-{1..120}.txt"
 do
   run_one ${input_files}
 done
