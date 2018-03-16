@@ -1,8 +1,8 @@
 //
-// HolmesWordCountHadoop.java -- Java class HolmesWordCountHadoop
+// WordCountHadoop.java -- Java class WordCountHadoop
 // Project dOrc-Hadoop-experiments
 //
-// Copyright (c) 2017 The University of Texas at Austin. All rights reserved.
+// Copyright (c) 2018 The University of Texas at Austin. All rights reserved.
 //
 // Use and redistribution of this file is governed by the license terms in
 // the LICENSE file found in the project's top-level directory and also found at
@@ -44,9 +44,9 @@ import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.util.GenericOptionsParser;
 
-public class HolmesWordCountHadoop {
+public class WordCountHadoop {
 
-    public HolmesWordCountHadoop() {
+    public WordCountHadoop() {
     }
 
     public static class TokenizerMapper extends Mapper<Object, Text, Text, IntWritable> {
@@ -95,8 +95,8 @@ public class HolmesWordCountHadoop {
     }
 
     protected static boolean testPayload(final Configuration conf, final String[] otherArgs, final int thisRepetitionNum) throws IOException, IllegalStateException, IllegalArgumentException, InterruptedException, ClassNotFoundException {
-        final Job job = Job.getInstance(conf, "Holmes word count");
-        job.setJarByClass(HolmesWordCountHadoop.class);
+        final Job job = Job.getInstance(conf, "Word count");
+        job.setJarByClass(WordCountHadoop.class);
         job.setMapperClass(TokenizerMapper.class);
         job.setCombinerClass(IntSumReducer.class);
         job.setReducerClass(IntSumReducer.class);
@@ -174,7 +174,7 @@ public class HolmesWordCountHadoop {
         final Configuration conf = new Configuration();
         final String[] otherArgs = new GenericOptionsParser(conf, args).getRemainingArgs();
         if (otherArgs.length < 2) {
-            System.err.println("Usage: HolmesWordCountHadoop [generic_options] in_file... out_file");
+            System.err.println("Usage: WordCountHadoop [generic_options] in_file... out_file");
             GenericOptionsParser.printGenericCommandUsage(System.err);
             System.exit(64);
         }
@@ -187,14 +187,14 @@ public class HolmesWordCountHadoop {
         final int clusterSize = fs.getDefaultReplication(new Path(otherArgs[0]));
 
         System.setProperty("orc.executionlog.dir", "raw-output");
-        System.setProperty("orc.executionlog.fileprefix", "HolmesWordCountHadoop_" + numInputFiles + "_" + clusterSize + "_");
+        System.setProperty("orc.executionlog.fileprefix", "WordCountHadoop_" + numInputFiles + "_" + clusterSize + "_");
 
         final int numRepetitions = Integer.parseInt(System.getProperty("orc.test.numRepetitions", "20"));
 
         setupOutput();
 
         final Object[][] factorValues = {
-                { "Program", "HolmesWordCountHadoop.java", "", "", "" },
+                { "Program", "WordCountHadoop.java", "", "", "" },
                 { "Number of files read", Integer.valueOf(numInputFiles), "", "numInputFiles", "Words counted in this number of input text files" },
                 { "Cluster size", Integer.valueOf(clusterSize), "", "dOrcNumRuntimes", "Number of replicas" }
         };

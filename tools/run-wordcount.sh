@@ -10,13 +10,13 @@ run_one () {
   echo
   echo
   echo -n 'File name prefix: '
-  export orc_executionlog_fileprefix=HolmesWordCountHadoop_$(eval hadoop jar dOrc-Hadoop-experiments.jar orc.test.item.distrib.GetFactorString -libjars ${HADOOP_CLASSPATH//:/,} "$@")
+  export orc_executionlog_fileprefix=WordCountHadoop_$(eval hadoop jar dOrc-Hadoop-experiments.jar orc.test.item.distrib.GetFactorString -libjars ${HADOOP_CLASSPATH//:/,} "$@")
   echo ${orc_executionlog_fileprefix}
   echo
   echo
-  echo "yarn jar dOrc-Hadoop-experiments.jar orc.test.item.distrib.HolmesWordCountHadoop -libjars ..." "$@" "output"
-  # { { eval yarn jar dOrc-Hadoop-experiments.jar orc.test.item.distrib.HolmesWordCountHadoop -libjars ${HADOOP_CLASSPATH//:/,} "$@" output | tee raw-output/${orc_executionlog_fileprefix}.out; exit ${PIPESTATUS[0]}; } 2>&1 1>&3 | tee raw-output/${orc_executionlog_fileprefix}.err; exit ${PIPESTATUS[0]}; } 3>&1 1>&2
-  { { eval yarn jar dOrc-Hadoop-experiments.jar orc.test.item.distrib.HolmesWordCountHadoop -libjars ${HADOOP_CLASSPATH//:/,} "$@" output | tee raw-output/${orc_executionlog_fileprefix}.out; } 2>&1 1>&3 | tee raw-output/${orc_executionlog_fileprefix}.err; } 3>&1 1>&2
+  echo "yarn jar dOrc-Hadoop-experiments.jar orc.test.item.distrib.WordCountHadoop -libjars ..." "$@" "output"
+  # { { eval yarn jar dOrc-Hadoop-experiments.jar orc.test.item.distrib.WordCountHadoop -libjars ${HADOOP_CLASSPATH//:/,} "$@" output | tee raw-output/${orc_executionlog_fileprefix}.out; exit ${PIPESTATUS[0]}; } 2>&1 1>&3 | tee raw-output/${orc_executionlog_fileprefix}.err; exit ${PIPESTATUS[0]}; } 3>&1 1>&2
+  { { eval yarn jar dOrc-Hadoop-experiments.jar orc.test.item.distrib.WordCountHadoop -libjars ${HADOOP_CLASSPATH//:/,} "$@" output | tee raw-output/${orc_executionlog_fileprefix}.out; } 2>&1 1>&3 | tee raw-output/${orc_executionlog_fileprefix}.err; } 3>&1 1>&2
   echo
   echo
   echo 'hdfs dfs -cat output\*/\*'

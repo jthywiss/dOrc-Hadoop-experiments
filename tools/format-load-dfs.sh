@@ -26,8 +26,8 @@ hdfs dfs -mkdir /user /user/${LOGNAME} /user/${LOGNAME}/input
 echo
 echo
 
-# echo 'hdfs dfs -put '${ORC_TEST_ROOT}'/OrcTests/test_data/performance/distrib/holmes_test_data input'
-# hdfs dfs -put ${ORC_TEST_ROOT}/OrcTests/test_data/performance/distrib/holmes_test_data input
+# echo 'hdfs dfs -put '${ORC_TEST_ROOT}'/OrcTests/test_data/performance/distrib/wordcount/wordcount-input-data input'
+# hdfs dfs -put ${ORC_TEST_ROOT}/OrcTests/test_data/performance/distrib/wordcount/wordcount-input-data input
 
 src="$1"
 i=1

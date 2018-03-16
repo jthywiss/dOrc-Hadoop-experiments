@@ -2,7 +2,7 @@
 // GetFactorString.java -- Java class GetFactorString
 // Project dOrc-Hadoop-experiments
 //
-// Copyright (c) 2017 The University of Texas at Austin. All rights reserved.
+// Copyright (c) 2018 The University of Texas at Austin. All rights reserved.
 //
 // Use and redistribution of this file is governed by the license terms in
 // the LICENSE file found in the project's top-level directory and also found at
@@ -33,7 +33,7 @@ public class GetFactorString {
         final FileSystem fs = FileSystem.get(conf);
         int numInputFiles = 0;
         for (int i = 0; i < otherArgs.length; ++i) {
-            numInputFiles += HolmesWordCountHadoop.countFilesRecursively(fs, new Path(otherArgs[i]));
+            numInputFiles += WordCountHadoop.countFilesRecursively(fs, new Path(otherArgs[i]));
         }
         final int clusterSize = fs.getDefaultReplication(new Path(otherArgs[0]));
 

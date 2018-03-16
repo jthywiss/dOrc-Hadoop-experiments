@@ -29,7 +29,7 @@ This application is for comparison with the d-Orc {{{wordcount}}} performance te
 # Copy the {{{dOrc-Hadoop-experiments.jar}}} JAR to the leader host.
 # Place a single copy of the input test data file somewhere on the leader host.
 # Run the {{{tools/format-load-dfs.sh}}} shell script on the leader host, to replicate the input test data file to HDFS.
-# Run the {{{tools/run-holmes.sh}}} shell script on the leader host, to actually run the app.
+# Run the {{{tools/run-wordcount.sh}}} shell script on the leader host, to actually run the app.
 # Output and logs will be in {{{raw-output}}}.
 # Run the {{{tools/clobber-dfs.sh}}} shell script on the leader host, to clean up the HDFS processes and files.
 # Run the R script:

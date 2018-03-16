@@ -1,4 +1,4 @@
-# plotElapsedTimeHadoop.R -- R script to plot elapsed time results from HolmesWordCountHadoop
+# plotElapsedTimeHadoop.R -- R script to plot elapsed time results from WordCountHadoop
 # Project OrcTests
 #
 # Created by jthywiss on Oct 13, 2017.
