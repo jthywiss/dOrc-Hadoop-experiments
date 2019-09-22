@@ -11,7 +11,7 @@ This application is for comparison with the d-Orc {{{wordcount}}} performance te
 == What's in This Directory Tree ==
 
 * An Eclipse project with Java source and build scripts.
-* The Hadoop 2.8.1 distribution for Linux, without the documentation.
+* The Hadoop 2.7.7 distribution for Linux, without the documentation.
 * Utilities to load data into HDFS and run the tests.
 * An R script to plot the elapsed times of the experimental trials.
 
@@ -19,8 +19,8 @@ This application is for comparison with the d-Orc {{{wordcount}}} performance te
 == To Install and Run ==
 
 # Pick a set of target Linux machines you will run HDFS and the tests on.  Pick one as the "leader" host.
-# Configure any settings in the {{{hadoop-2.8.1/etc/hadoop}}} directory.  Notably, set the list of {{{slaves}}} and {{{slaves.all}}}, and the settings in {{{core-site.xml}}} and {{{hdfs-site.xml}}}.
-# Copy the Hadoop distribution in {{{hadoop-2.8.1}}} to all of your target machines.
+# Configure any settings in the {{{hadoop-2.7.7/etc/hadoop}}} directory.  Notably, set the list of {{{slaves}}} and {{{slaves.all}}}, and the settings in {{{core-site.xml}}} and {{{hdfs-site.xml}}}.
+# Copy the Hadoop distribution in {{{hadoop-2.7.7}}} to all of your target machines.
 # Set the {{{HADOOP_PREFIX}}} environment variable on all of your target machines to the location of the Hadoop distribution.
 # Add {{{$HADOOP_PREFIX/sbin:$HADOOP_PREFIX/bin}}} to your PATH on all of your target machines.
 # Run the Eclipse build.  (The Eclipse projects {{{OrcScala}}}, {{{OrcSites}}}, {{{OrcTests}}}, and {{{PorcE}}} are needed to build {{{dOrc-Hadoop-experiments}}}.)  The Eclipse build:
