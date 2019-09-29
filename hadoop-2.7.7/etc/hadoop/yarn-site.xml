@@ -15,10 +15,6 @@
 <configuration>
 <!-- Site specific YARN configuration properties -->
   <property>
-    <name>yarn.resourcemanager.hostname</name>
-    <value>aggravation.cs.utexas.edu</value>
-  </property>
-  <property>
     <name>yarn.nodemanager.aux-services</name>
     <value>mapreduce_shuffle</value>
   </property>
@@ -46,4 +42,92 @@
     <name>yarn.application.classpath</name>
     <value>$HADOOP_CONF_DIR,$HADOOP_COMMON_HOME/share/hadoop/common/*,$HADOOP_COMMON_HOME/share/hadoop/common/lib/*,$HADOOP_HDFS_HOME/share/hadoop/hdfs/*,$HADOOP_HDFS_HOME/share/hadoop/hdfs/lib/*,$HADOOP_YARN_HOME/share/hadoop/yarn/*,$HADOOP_YARN_HOME/share/hadoop/yarn/lib/*,/u/jthywiss/giraph/giraph-examples/target/*</value>
   </property>
+
+
+<!--
+    Network addresses
+-->
+
+  <property>
+    <name>yarn.resourcemanager.hostname</name>
+    <value>candyland.cs.utexas.edu</value>
+  </property>
+  <property>
+    <name>yarn.resourcemanager.scheduler.address</name>
+    <value>${yarn.resourcemanager.hostname}:5901</value>
+  </property>
+  <property>
+    <name>yarn.resourcemanager.resource-tracker.address</name>
+    <value>${yarn.resourcemanager.hostname}:5902</value>
+  </property>
+  <property>
+    <name>yarn.resourcemanager.address</name>
+    <value>${yarn.resourcemanager.hostname}:5900</value>
+  </property>
+  <property>
+    <name>yarn.resourcemanager.admin.address</name>
+    <value>${yarn.resourcemanager.hostname}:5903</value>
+  </property>
+  <property>
+    <name>yarn.resourcemanager.webapp.address</name>
+    <value>${yarn.resourcemanager.hostname}:5899</value>
+  </property>
+  <property>
+    <name>yarn.nodemanager.address</name>
+    <value>${yarn.nodemanager.hostname}:5908</value>
+  </property>
+  <property>
+    <name>yarn.nodemanager.localizer.address</name>
+    <value>${yarn.nodemanager.hostname}:5909</value>
+  </property>
+  <property>
+    <name>yarn.nodemanager.webapp.address</name>
+    <value>${yarn.nodemanager.hostname}:5910</value>
+  </property>
+
+
+<!--
+    Prevent unwanted services from being usable, by binding them to
+    127.0.0.1:1018
+-->
+
+  <!-- No HTTPS web UIs -->
+  <property>
+    <name>yarn.resourcemanager.webapp.https.address</name>
+    <value>127.0.0.1:1018</value>
+  </property>
+
+  <!-- No timeline service -->
+  <property>
+    <name>yarn.timeline-service.address</name>
+    <value>127.0.0.1:1018</value>
+  </property>
+  <property>
+    <name>yarn.timeline-service.webapp.address</name>
+    <value>127.0.0.1:1018</value>
+  </property>
+  <property>
+    <name>yarn.timeline-service.webapp.https.address</name>
+    <value>127.0.0.1:1018</value>
+  </property>
+
+  <!-- No shared cache -->
+  <property>
+    <name>yarn.sharedcache.admin.address</name>
+    <value>127.0.0.1:1018</value>
+  </property>
+  <property>
+    <name>yarn.sharedcache.webapp.address</name>
+    <value>127.0.0.1:1018</value>
+  </property>
+  <property>
+    <name>yarn.sharedcache.uploader.server.address</name>
+    <value>127.0.0.1:1018</value>
+  </property>
+  <property>
+    <name>yarn.sharedcache.client-server.address</name>
+    <value>127.0.0.1:1018</value>
+  </property>
+
+
 </configuration>

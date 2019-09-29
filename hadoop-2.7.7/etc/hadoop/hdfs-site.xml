@@ -22,11 +22,83 @@
     <value>file:///var/local/hadoop-${user.name}/dfs/data</value>
   </property>
   <property>
-    <name>dfs.namenode.secondary.http-address</name>
-    <value>aggravation.cs.utexas.edu:50090</value>
-  </property>
-  <property>
     <name>dfs.replication</name>
     <value>6</value>
   </property>
+
+
+<!--
+    Network addresses
+-->
+
+  <property>
+    <name>dfs.namenode.rpc-address</name>
+    <value>aggravation.cs.utexas.edu:5901</value>
+  </property>
+  <property>
+    <name>dfs.namenode.http-address</name>
+    <value>aggravation.cs.utexas.edu:5900</value>
+  </property>
+  <property>
+    <name>dfs.namenode.secondary.http-address</name>
+    <value>backgammon.cs.utexas.edu:5900</value>
+  </property>
+  <property>
+    <name>dfs.datanode.address</name>
+    <value>0.0.0.0:5904</value>
+  </property>
+  <property>
+    <name>dfs.datanode.ipc.address</name>
+    <value>0.0.0.0:5905</value>
+  </property>
+  <property>
+    <name>dfs.datanode.http.address</name>
+    <value>0.0.0.0:5906</value>
+  </property>
+
+
+<!--
+    Prevent unwanted services from being usable, by binding them to
+    127.0.0.1:1018
+-->
+
+  <!-- No HTTPS web UIs -->
+  <property>
+    <name>dfs.namenode.https-address</name>
+    <value>127.0.0.1:1018</value>
+  </property>
+  <property>
+    <name>dfs.namenode.secondary.https-address</name>
+    <value>127.0.0.1:1018</value>
+  </property>
+  <property>
+    <name>dfs.datanode.https.address</name>
+    <value>127.0.0.1:1018</value>
+  </property>
+
+  <!-- No HDFS backup node -->
+  <property>
+    <name>dfs.namenode.backup.address</name>
+    <value>127.0.0.1:1018</value>
+  </property>
+  <property>
+    <name>dfs.namenode.backup.http-address</name>
+    <value>127.0.0.1:1018</value>
+  </property>
+
+  <!-- No HDFS JournalNodes -->
+  <property>
+    <name>dfs.journalnode.rpc-address</name>
+    <value>127.0.0.1:1018</value>
+  </property>
+  <property>
+    <name>dfs.journalnode.http-address</name>
+    <value>127.0.0.1:1018</value>
+  </property>
+  <property>
+    <name>dfs.journalnode.https-address</name>
+    <value>127.0.0.1:1018</value>
+  </property>
+
+
 </configuration>

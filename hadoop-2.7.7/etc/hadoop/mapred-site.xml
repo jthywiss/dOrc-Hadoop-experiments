@@ -18,10 +18,6 @@
 
 <configuration>
   <property>
-    <name>mapred.job.tracker</name> 
-    <value>aggravation.cs.utexas.edu:8012</value>
-  </property>
-  <property>
     <name>mapred.tasktracker.map.tasks.maximum</name>
     <value>4</value>
   </property>
@@ -29,4 +25,52 @@
     <name>mapred.map.tasks</name>
     <value>4</value>
   </property>
+
+
+<!--
+    Network addresses
+-->
+
+  <property>
+    <name>mapreduce.shuffle.port</name>
+    <value>5907</value>
+  </property>
+
+
+<!--
+    Prevent unwanted services from being usable, by binding them to
+    127.0.0.1:1018
+-->
+
+  <!-- Disable all of MapReduce in favor of YARN -->
+  <property>
+    <name>mapred.job.tracker</name>
+    <value>127.0.0.1:1018</value>
+  </property>
+  <property>
+    <name>mapreduce.jobtracker.address</name>
+    <value>127.0.0.1:1018</value>
+  </property>
+  <property>
+    <name>mapreduce.jobtracker.http.address</name>
+    <value>127.0.0.1:1018</value>
+  </property>
+  <property>
+    <name>mapreduce.tasktracker.http.address</name>
+    <value>127.0.0.1:1018</value>
+  </property>
+  <property>
+    <name>mapreduce.jobhistory.address</name>
+    <value>127.0.0.1:1018</value>
+  </property>
+  <property>
+    <name>mapreduce.jobhistory.webapp.address</name>
+    <value>127.0.0.1:1018</value>
+  </property>
+  <property>
+    <name>mapreduce.jobhistory.admin.address</name>
+    <value>127.0.0.1:1018</value>
+  </property>
+
+
 </configuration>
