@@ -33,15 +33,15 @@
 
   <property>
     <name>dfs.namenode.rpc-address</name>
-    <value>aggravation.cs.utexas.edu:5901</value>
+    <value>aggravation.cs.utexas.edu:5903</value>
   </property>
   <property>
     <name>dfs.namenode.http-address</name>
-    <value>aggravation.cs.utexas.edu:5900</value>
+    <value>aggravation.cs.utexas.edu:5902</value>
   </property>
   <property>
     <name>dfs.namenode.secondary.http-address</name>
-    <value>backgammon.cs.utexas.edu:5900</value>
+    <value>backgammon.cs.utexas.edu:5902</value>
   </property>
   <property>
     <name>dfs.datanode.address</name>

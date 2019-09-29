@@ -19,7 +19,7 @@
 <configuration>
   <property>
     <name>fs.default.name</name>
-    <value>hdfs://aggravation.cs.utexas.edu:5901</value>
+    <value>hdfs://aggravation.cs.utexas.edu:5903</value>
   </property>
   <property>
     <name>hadoop.tmp.dir</name>

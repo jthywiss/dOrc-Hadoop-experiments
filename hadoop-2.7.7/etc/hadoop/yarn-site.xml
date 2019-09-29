@@ -50,27 +50,27 @@
 
   <property>
     <name>yarn.resourcemanager.hostname</name>
-    <value>candyland.cs.utexas.edu</value>
+    <value>aggravation.cs.utexas.edu</value>
   </property>
   <property>
     <name>yarn.resourcemanager.scheduler.address</name>
-    <value>${yarn.resourcemanager.hostname}:5901</value>
+    <value>${yarn.resourcemanager.hostname}:5908</value>
   </property>
   <property>
     <name>yarn.resourcemanager.resource-tracker.address</name>
-    <value>${yarn.resourcemanager.hostname}:5902</value>
+    <value>${yarn.resourcemanager.hostname}:5909</value>
   </property>
   <property>
     <name>yarn.resourcemanager.address</name>
-    <value>${yarn.resourcemanager.hostname}:5900</value>
+    <value>${yarn.resourcemanager.hostname}:5907</value>
   </property>
   <property>
     <name>yarn.resourcemanager.admin.address</name>
-    <value>${yarn.resourcemanager.hostname}:5903</value>
+    <value>${yarn.resourcemanager.hostname}:5910</value>
   </property>
   <property>
     <name>yarn.resourcemanager.webapp.address</name>
-    <value>${yarn.resourcemanager.hostname}:5899</value>
+    <value>${yarn.resourcemanager.hostname}:5906</value>
   </property>
   <property>
     <name>yarn.nodemanager.address</name>
