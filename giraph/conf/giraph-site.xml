@@ -22,4 +22,9 @@ under the License.
 
 <configuration>
 
+  <property>
+    <name>giraph.yarn.task.heap.mb</name>
+    <value>13107</value>
+  </property>
+
 </configuration>
