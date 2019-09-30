@@ -17,13 +17,19 @@
 <!-- Put site-specific property overrides in this file. -->
 
 <configuration>
+
+  <!-- Memory allocation -->
   <property>
-    <name>mapred.tasktracker.map.tasks.maximum</name>
-    <value>4</value>
+    <name>mapred.child.java.opts</name>
+    <value>-Xmx13107m</value>
   </property>
   <property>
-    <name>mapred.map.tasks</name>
-    <value>4</value>
+    <name>mapreduce.map.java.opts</name>
+    <value>-Xmx13107m</value>
+  </property>
+  <property>
+    <name>mapreduce.reduce.java.opts</name>
+    <value>-Xmx13107m</value>
   </property>
 
 
