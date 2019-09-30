@@ -43,9 +43,18 @@
     <value>$HADOOP_CONF_DIR,$HADOOP_COMMON_HOME/share/hadoop/common/*,$HADOOP_COMMON_HOME/share/hadoop/common/lib/*,$HADOOP_HDFS_HOME/share/hadoop/hdfs/*,$HADOOP_HDFS_HOME/share/hadoop/hdfs/lib/*,$HADOOP_YARN_HOME/share/hadoop/yarn/*,$HADOOP_YARN_HOME/share/hadoop/yarn/lib/*,/u/jthywiss/giraph/giraph-examples/target/*</value>
   </property>
 
+
+  <property>
+    <name>yarn.nodemanager.resource.memory-mb</name>
+    <value>16384</value>
+  </property>
   <property>
     <name>yarn.scheduler.maximum-allocation-mb</name>
     <value>16384</value>
+  </property>
+  <property>
+    <name>yarn.nodemanager.resource.cpu-vcores</name>
+    <value>8</value>
   </property>
   <property>
     <name>yarn.scheduler.maximum-allocation-vcores</name>
