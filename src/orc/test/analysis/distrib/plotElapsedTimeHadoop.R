@@ -33,6 +33,9 @@ elapsedTimeSummary <- warmRepetitionTimes[!is.na(warmRepetitionTimes$dOrcNumRunt
 # Plot elapsed times
 
 for (currProgram in unique(elapsedTimeSummary$program)) {
+  
+  # Full-size plot
+
   ggplot(elapsedTimeSummary[elapsedTimeSummary$program == currProgram,], aes(x = sizeInput, y = meanElapsedTime, group = factor(dOrcNumRuntimes), colour = factor(dOrcNumRuntimes), shape = factor(dOrcNumRuntimes))) +
   geom_point(size = 3) +
   stat_summary(fun.y = mean, geom = "line") +
@@ -45,13 +48,28 @@ for (currProgram in unique(elapsedTimeSummary$program)) {
   theme_minimal() +
   theme(legend.justification = c(0, 1), legend.position = c(0, 1))
 
-  ggsave(paste0("elapsedTime_", currProgram, ".pdf"), width = 7, height = 7)
+  ggsave(paste0("elapsedTime_v_inputSize_", currProgram, ".pdf"), width = 7, height = 7)
+  
+  # Small-size plot
+
+  ggplot(elapsedTimeSummary[elapsedTimeSummary$program == currProgram,], aes(x = sizeInput, y = meanElapsedTime, group = factor(dOrcNumRuntimes), colour = factor(dOrcNumRuntimes), shape = factor(dOrcNumRuntimes))) +
+  geom_point(size = 7) +
+  stat_summary(fun.y = mean, geom = "line") +
+  xlab("Input size (GB)") +
+  labs(colour = "Cluster size [Number of HDFS replicas]", shape = "Cluster size [Number of HDFS replicas]") +
+  scale_y_continuous(name = "Elapsed time (s)", labels = function(n){format(n / 1000000, scientific = FALSE)}) +
+  expand_limits(y = 0.0) +
+  # geom_errorbar(aes(ymax = meanElapsedTime + seElapsedTime, ymin = meanElapsedTime - seElapsedTime), width = 0.2, alpha = 0.35, position = "dodge") +
+  theme_minimal() +
+  theme(legend.position = "none", axis.text=element_text(size=24), axis.title=element_text(size=28))
+
+  ggsave(paste0("elapsedTime_v_inputSize_", currProgram, "_sm.pdf"), width = 7, height = 7)
 }
 
 
 # # Plot elapsed times: Hadoop vs. Mixed Orc-Java at 6 nodes
 #
-# program <- c("Java+dOrc", "Hadoop")
+# program <- c("Java+Orc", "Hadoop")
 # meanElapsedTime <- c(15352089,130345826.3-44750000)
 # seElapsedTime <- c(38011,496857)
 # hadoopVsMixed <- data.frame(program,meanElapsedTime,seElapsedTime)
@@ -60,10 +78,10 @@ for (currProgram in unique(elapsedTimeSummary$program)) {
 #   ggplot(hadoopVsMixed, aes(x = program, y = meanElapsedTime, group = 1, colour = program, fill = program)) +
 #   geom_col() +
 #   xlab("Program variant") +
-#   scale_y_continuous(name = "Elapsed time (s)", labels = function(n){format(n / 1000000, scientific = FALSE)}) +
+#   scale_y_log10(name = "Elapsed time (s) (log scale)", labels = function(n){format(n / 1000000, scientific = FALSE)}) +
 #   expand_limits(y = 0.0) +
 #   geom_errorbar(aes(ymax = meanElapsedTime + seElapsedTime, ymin = meanElapsedTime - seElapsedTime), colour = "black", width = 0.2, alpha = 0.35, position = "dodge") +
 #   theme_minimal() +
 #   theme(legend.position = "none", axis.text=element_text(size=24), axis.title=element_text(size=28))
-#   ggsave("wordcount-elapsedTime-hadoop-mixed-6.pdf", width = 7, height = 7)
-# }
+#   ggsave("elapsedTime_v_program-hadoop-mixed-6.pdf", width = 7, height = 7)
+#}
